@@ -31,9 +31,6 @@ public class DialogsListAdapter extends BaseListAdapter<DialogWrapper> {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
 
-        DialogWrapper dialogWrapper = getItem(position);
-        Dialog dialog = dialogWrapper.getDialog();
-
         if (convertView == null) {
             convertView = layoutInflater.inflate(R.layout.item_dialog, null);
 
@@ -50,6 +47,8 @@ public class DialogsListAdapter extends BaseListAdapter<DialogWrapper> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
+        final DialogWrapper dialogWrapper = getItem(position);
+        final Dialog dialog = dialogWrapper.getDialog();
 
         if (Dialog.Type.PRIVATE.equals(dialog.getType())) {
             User opponentUser = dialogWrapper.getOpponentUser();
@@ -61,17 +60,16 @@ public class DialogsListAdapter extends BaseListAdapter<DialogWrapper> {
             }
         } else {
             viewHolder.nameTextView.setText(dialog.getTitle());
-            viewHolder.avatarImageView.setImageResource(R.drawable.placeholder_group);
             displayGroupPhotoImage(dialog.getPhoto(), viewHolder.avatarImageView);
         }
 
         long totalCount = dialogWrapper.getTotalCount();
 
         if (totalCount > ConstsCore.ZERO_INT_VALUE) {
-            viewHolder.unreadMessagesTextView.setText(totalCount + ConstsCore.EMPTY_STRING);
+            viewHolder.unreadMessagesTextView.setText(String.valueOf(totalCount));
             viewHolder.unreadMessagesTextView.setVisibility(View.VISIBLE);
         } else {
-            viewHolder.unreadMessagesTextView.setVisibility(View.GONE);
+            viewHolder.unreadMessagesTextView.setVisibility(View.INVISIBLE);
         }
 
         viewHolder.lastMessageTextView.setText(dialogWrapper.getLastMessage());
