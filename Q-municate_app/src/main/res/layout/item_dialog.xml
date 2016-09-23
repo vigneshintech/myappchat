@@ -59,6 +59,7 @@
             android:id="@+id/unread_messages_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:minWidth="40dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:background="@drawable/badge_unread_messages_counter"
@@ -67,7 +68,8 @@
             android:paddingRight="10dp"
             android:paddingTop="1dp"
             android:textColor="@android:color/white"
-            android:textSize="@dimen/text_size" />
+            android:textSize="@dimen/text_size"
+            android:gravity="center" />
 
     </RelativeLayout>
 

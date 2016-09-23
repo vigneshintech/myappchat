@@ -68,10 +68,10 @@ public class DialogsListAdapter extends BaseListAdapter<DialogWrapper> {
         long totalCount = dialogWrapper.getTotalCount();
 
         if (totalCount > ConstsCore.ZERO_INT_VALUE) {
-            viewHolder.unreadMessagesTextView.setText(totalCount + ConstsCore.EMPTY_STRING);
+            viewHolder.unreadMessagesTextView.setText(String.valueOf(totalCount));
             viewHolder.unreadMessagesTextView.setVisibility(View.VISIBLE);
         } else {
-            viewHolder.unreadMessagesTextView.setVisibility(View.GONE);
+            viewHolder.unreadMessagesTextView.setVisibility(View.INVISIBLE);
         }
 
         viewHolder.lastMessageTextView.setText(dialogWrapper.getLastMessage());
