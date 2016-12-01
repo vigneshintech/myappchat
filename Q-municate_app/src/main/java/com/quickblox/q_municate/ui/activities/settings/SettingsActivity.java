@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.SwitchCompat;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -15,6 +16,7 @@ import com.quickblox.q_municate.ui.activities.base.BaseLoggableActivity;
 import com.quickblox.q_municate.ui.activities.changepassword.ChangePasswordActivity;
 import com.quickblox.q_municate.ui.activities.feedback.FeedbackActivity;
 import com.quickblox.q_municate.ui.activities.invitefriends.InviteFriendsActivity;
+import com.quickblox.q_municate.ui.activities.others.PreviewImageActivity;
 import com.quickblox.q_municate.ui.activities.profile.MyProfileActivity;
 import com.quickblox.q_municate.ui.fragments.dialogs.base.TwoButtonsDialogFragment;
 import com.quickblox.q_municate.ui.views.roundedimageview.RoundedImageView;
@@ -161,6 +163,14 @@ public class SettingsActivity extends BaseLoggableActivity {
                 user.getAvatar(),
                 avatarImageView,
                 ImageLoaderUtils.UIL_USER_AVATAR_DISPLAY_OPTIONS);
+    }
+
+    @OnClick(R.id.avatar_imageview)
+    void showFullScreenAvatar(){
+        String imageUrl = user.getAvatar();
+        if (!TextUtils.isEmpty(imageUrl)) {
+            PreviewImageActivity.start(this, imageUrl);
+        }
     }
 
     private void addActions() {

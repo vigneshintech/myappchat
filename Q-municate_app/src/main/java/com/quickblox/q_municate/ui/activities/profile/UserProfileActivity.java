@@ -3,6 +3,7 @@ package com.quickblox.q_municate.ui.activities.profile;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
@@ -13,6 +14,7 @@ import com.quickblox.q_municate.R;
 import com.quickblox.q_municate.ui.activities.base.BaseLoggableActivity;
 import com.quickblox.q_municate.ui.activities.call.CallActivity;
 import com.quickblox.q_municate.ui.activities.chats.PrivateDialogActivity;
+import com.quickblox.q_municate.ui.activities.others.PreviewImageActivity;
 import com.quickblox.q_municate.ui.fragments.dialogs.base.TwoButtonsDialogFragment;
 import com.quickblox.q_municate.ui.views.roundedimageview.RoundedImageView;
 import com.quickblox.q_municate.utils.DateUtils;
@@ -155,6 +157,14 @@ public class UserProfileActivity extends BaseLoggableActivity {
         if (checkNetworkAvailableWithError()) {
             removeContactAndChatHistory = true;
             showRemoveContactAndChatHistoryDialog();
+        }
+    }
+
+    @OnClick(R.id.avatar_imageview)
+    void showFullScreenAvatar(){
+        String imageUrl = user.getAvatar();
+        if (!TextUtils.isEmpty(imageUrl)) {
+            PreviewImageActivity.start(this, imageUrl);
         }
     }
 
